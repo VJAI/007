@@ -5,10 +5,27 @@ Below code shows you how we can implement a simple global event emitter.
 ## Source Code
 
 ```js
+/**
+ * Singleton global event emitter.
+ * @class
+ */
 class Emitter {
 
+  /**
+   * Dictionary that maps the objects with their events and handlers.
+   * @type {object}
+   * @private
+   */
   _objectsEventsHandlersMap = {};
 
+  /**
+   * Subscribes to an event of the passed object.
+   * @param {number} id The unique id of the object.
+   * @param {string} eventName Name of the event
+   * @param {function} handler The event-handler function
+   * @param {boolean} [once = false] Is it one-time subscription or not?
+   * @return {Emitter}
+   */
   on(id, eventName, handler, once = false) {
     if (!this._hasObject(id)) {
       this._objectsEventsHandlersMap[id] = {};
@@ -28,6 +45,13 @@ class Emitter {
     return this;
   }
 
+  /**
+   * Un-subscribes from an event of the passed object.
+   * @param {number} id The unique id of the object.
+   * @param {string} eventName The event name.
+   * @param {function} [handler] The handler function.
+   * @return {Emitter}
+   */
   off(id, eventName, handler) {
     if (!this._hasEvent(id, eventName)) {
       return this;
@@ -46,6 +70,13 @@ class Emitter {
     return this;
   }
 
+  /**
+   * Fires an event of the object passing the source and other optional arguments.
+   * @param {number} id The unique id of the object.
+   * @param {string} eventName The event name
+   * @param {...*} args The arguments that to be passed to handler
+   * @return {Emitter}
+   */
   fire(id, eventName, ...args) {
     if (!this._hasEvent(id, eventName)) {
       return this;
@@ -70,6 +101,11 @@ class Emitter {
     return this;
   }
 
+  /**
+   * Clears the event handlers of the passed object.
+   * @param {number} [id] The unique id of the object.
+   * @return {Emitter}
+   */
   clear(id) {
     if (!id) {
       this._objectsEventsHandlersMap = {};
@@ -83,10 +119,23 @@ class Emitter {
     return this;
   }
 
+  /**
+   * Returns true if the object is already registered.
+   * @param {number} id The object id.
+   * @return {boolean}
+   * @private
+   */
   _hasObject(id) {
     return this._objectsEventsHandlersMap.hasOwnProperty(id);
   }
 
+  /**
+   * Returns true if the passed object has an entry of the passed event.
+   * @param {number} id The object id.
+   * @param {string} eventName The event name.
+   * @return {boolean}
+   * @private
+   */
   _hasEvent(id, eventName) {
     return this._hasObject(id) && this._objectsEventsHandlersMap[id].hasOwnProperty(eventName);
   }
