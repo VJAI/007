@@ -141,3 +141,16 @@ class Emitter {
   }
 }
 ```
+
+## Usage
+
+```js
+const emitter = new Emitter();
+const playHandler = () => {};
+
+emitter.on('play', playHandler);
+
+emitter.fire('play');
+
+emitter.off('play', playHandler);
+```
