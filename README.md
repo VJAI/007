@@ -1,6 +1,6 @@
 # OO7
 
-Compendium of code secrets
+Collection of code secrets from different languages like JavaScript, C#, CSS, SQL etc.
 
 ## JavaScript
 
