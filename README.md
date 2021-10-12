@@ -1,4 +1,4 @@
-# OO7
+# Code Recipes
 
 Collection of code secrets from different languages like JavaScript, C#, CSS, SQL etc.
 
