@@ -1,6 +1,6 @@
 # Code Recipes
 
-Collection of code secrets from different languages like JavaScript, C#, CSS, SQL etc.
+Collection of code recipes from different languages like JavaScript, C#, CSS, SQL etc.
 
 ## HTML5
 
